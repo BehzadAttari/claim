@@ -3,3 +3,5 @@ dist/
 validation-report.json
 comment.md
 *.log
+.env
+.env.*
