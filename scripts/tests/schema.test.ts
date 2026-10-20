@@ -58,7 +58,7 @@ test("unknown fields and bad themes fail", () => {
   );
 });
 
-test("seed page dhanush.json is valid", () => {
-  const seed = JSON.parse(readFileSync(join(root, "pages", "dhanush.json"), "utf8"));
+test("seed page dhanushnehru.json is valid", () => {
+  const seed = JSON.parse(readFileSync(join(root, "pages", "dhanushnehru.json"), "utf8"));
   assert.deepEqual(schemaErrors(schema, seed), []);
 });
