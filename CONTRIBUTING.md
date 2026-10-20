@@ -16,9 +16,14 @@ contributors, and maintainers are happy to help.
    [got-a.page/claim](https://got-a.page/claim) - it writes the JSON for you.
 5. Scroll down, choose **Create a new branch for this commit and start a pull
    request**, and propose the change.
-6. Our checker comments within seconds. If it asks for a fix, edit the file on
-   the same branch and the pull request updates itself.
-7. A maintainer merges. You've got a page.
+6. Check the PR's validation results. Fork PRs run the checks but do not get
+   automatic bot comments or labels. If a check asks for a fix, edit the file
+   on the same branch and the pull request updates itself.
+7. **Point mode only:** [connect the domain on your hosting account](docs/CONNECT-HOST.md)
+   before merge and confirm the claim uses the host's recommended DNS target.
+8. A maintainer merges. Instant pages need no more setup. For point mode,
+   follow the [after-merge checklist](docs/CONNECT-HOST.md#after-your-pr-merges):
+   wait for DNS sync and your host's HTTPS certificate, then test your address.
 
 ### The fine print that keeps things fair
 
