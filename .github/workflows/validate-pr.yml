@@ -21,6 +21,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm test
+      - run: npx tsc --noEmit
+      - run: npm run build-index
       - name: Run checks
         id: check
         run: |
@@ -33,7 +36,8 @@ jobs:
           echo "exit=$?" >> "$GITHUB_OUTPUT"
           exit 0
       - name: Apply labels
-        if: always()
+        # Fork PR tokens are read-only. Keep validation, but skip bot writes.
+        if: always() && github.event.pull_request.head.repo.full_name == github.repository
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -42,7 +46,8 @@ jobs:
             gh pr edit "${{ github.event.pull_request.number }}" --add-label "$LABELS" || true
           fi
       - name: Post the review comment
-        if: always()
+        # Fork PR tokens are read-only. Keep validation, but skip bot writes.
+        if: always() && github.event.pull_request.head.repo.full_name == github.repository
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |

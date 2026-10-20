@@ -2,7 +2,7 @@
  * Builds the instant-mode index the renderer Worker and the website read.
  *
  * Output (dist/):
- *   index.json  - every instant page, keyed by subdomain
+ *   index.json  - instant pages plus separate claimed/reserved name lists
  *   stats.json  - counts for the website's live counter
  *
  * The workflow publishes dist/ to GitHub Pages, so both consumers fetch a
@@ -26,7 +26,7 @@ const repo = arg("--repo", ".");
 const outDir = arg("--out", join(repo, "dist"));
 const data = loadRepo(repo);
 
-// Never publish a broken index: re-validate every instant page first.
+// Never publish a broken index: re-validate every claim first.
 const problems: string[] = [];
 const index: Record<string, unknown> = {};
 const stats = {
@@ -76,7 +76,15 @@ if (problems.length > 0) {
 mkdirSync(outDir, { recursive: true });
 writeFileSync(
   join(outDir, "index.json"),
-  JSON.stringify({ generatedAt: stats.generatedAt, pages: index }, null, 2)
+  JSON.stringify({
+    generatedAt: stats.generatedAt,
+    pages: index, // Renderer contract: instant pages only.
+    availabilityVersion: 1,
+    claimed: data.pages.map(({ name }) => name).sort(),
+    reserved: [...new Set([
+      ...data.reserved.infrastructure, ...data.reserved.brands, ...data.reserved.blocked,
+    ])].sort(),
+  }, null, 2)
 );
 writeFileSync(join(outDir, "stats.json"), JSON.stringify(stats, null, 2));
 console.log(`Built index: ${Object.keys(index).length} instant pages, ${stats.pointPages} point pages.`);
