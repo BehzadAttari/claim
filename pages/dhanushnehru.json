@@ -1,27 +1,11 @@
 {
-  "mode": "instant",
+  "mode": "point",
   "owner": {
     "github": "DhanushNehru"
   },
-  "purpose": "The very first page, claimed by the person who started got-a.page.",
+  "purpose": "The very first page, claimed by the person who started got-a.page. His portfolio, pointed here.",
   "showcase": true,
-  "page": {
-    "type": "person",
-    "title": "Dhanush Nehru",
-    "tagline": "Building things on the internet",
-    "avatar": "https://github.com/DhanushNehru.png",
-    "theme": "sunrise",
-    "links": [
-      {
-        "label": "GitHub",
-        "url": "https://github.com/DhanushNehru"
-      }
-    ],
-    "sections": [
-      {
-        "heading": "About",
-        "text": "Maker of small useful things, and of this little corner of the web where everyone gets a page."
-      }
-    ]
+  "records": {
+    "CNAME": "dhanushnehru.github.io"
   }
 }
