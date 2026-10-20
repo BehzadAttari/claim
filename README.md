@@ -11,10 +11,13 @@ at it. If you don't, we'll build a lovely page for you on the spot.
 
 1. **Fork this repository** (button, top right).
 2. **Add one file**: `pages/yourname.json` - copy a starter below.
-3. **Open a pull request.** Our friendly checker reviews it in seconds and
-   tells you exactly what your page will do.
-4. A maintainer merges, and **you've got a page.** Instant pages go live
-   within minutes; pointed pages go live as soon as DNS syncs.
+3. **Open a pull request.** Validation checks review your file. Follow the
+   check results; fork PRs do not get automatic bot comments.
+4. **For point mode, connect the domain on your host before merge.** Follow
+   [the host setup guide](docs/CONNECT-HOST.md). Instant mode skips this.
+5. A maintainer merges. Instant pages go live within minutes. Point-mode
+   pages need DNS sync **and** your host's custom-domain setup and HTTPS
+   certificate before they work.
 
 Never made a pull request? This repo is a kind place for your first one - the
 [step-by-step guide](CONTRIBUTING.md) walks you through every click.
@@ -56,6 +59,22 @@ light and dark mode included.
 
 Works with GitHub Pages, Vercel, Netlify, Cloudflare Pages - anywhere that
 gives you a hostname or IP. `CNAME`, `A`, `AAAA` and `TXT` records supported.
+
+## After your PR merges
+
+**Instant mode:** we host your page; no CNAME file or hosting setup is needed.
+
+**Point mode:** DNS alone is not enough. You must also add
+`yourname.got-a.page` to your own hosting account, ideally before merge.
+For GitHub Pages, this means **your website repo > Settings > Pages > Custom
+domain**. Branch publishing creates a `CNAME` file in that site's publishing
+source; custom Actions publishing uses the setting without needing that file.
+Do not add a `CNAME` file to this claim repo.
+
+See the [host setup guide](docs/CONNECT-HOST.md) for GitHub Pages, Vercel,
+Netlify and Cloudflare Pages. After merge, wait for DNS sync and your host's
+HTTPS certificate, then test `https://yourname.got-a.page`. Certificate
+issuance can take a while; GitHub says Enforce HTTPS can take up to 24 hours.
 
 ## A few kind rules
 
