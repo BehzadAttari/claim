@@ -1,0 +1,38 @@
+# Syncs point-mode DNS records after merges. Dry-run on demand, apply on merge.
+# Secrets: CF_API_TOKEN (Zone > DNS > Edit on got-a.page only), CF_ZONE_ID.
+name: Sync DNS records
+on:
+  push:
+    branches: [main]
+    paths: ["pages/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dns-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Plan (dry run)
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+        run: npx tsx scripts/src/dns-sync.ts --repo .
+      - name: Apply (on merge)
+        if: github.event_name == 'push'
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+        run: npx tsx scripts/src/dns-sync.ts --repo . --apply

@@ -1,0 +1,41 @@
+{
+  "description": "Names nobody can claim. Infrastructure addresses protect the service itself, brand names prevent impersonation, and blocked words keep the namespace welcoming. Additions here apply to new claims immediately; existing pages are grandfathered unless they break the rules in TERMS.md.",
+  "infrastructure": [
+    "www", "mail", "email", "webmail", "admin", "administrator", "api", "app",
+    "docs", "status", "support", "abuse", "security", "login", "auth", "billing",
+    "help", "blog", "cdn", "dev", "staging", "test", "root", "dns", "ns1", "ns2",
+    "smtp", "imap", "pop", "pop3", "ftp", "ssh", "vpn", "proxy", "gateway",
+    "dashboard", "panel", "portal", "account", "accounts", "signup", "signin",
+    "register", "payments", "pay", "checkout", "store", "shop", "static",
+    "assets", "media", "images", "img", "files", "download", "downloads",
+    "upload", "uploads", "git", "github", "gitlab", "webhook", "webhooks",
+    "rss", "feed", "sitemap", "robots", "favicon", "index", "home", "main",
+    "official", "verified", "team", "staff", "moderator", "mod", "owner",
+    "founder", "system", "internal", "beta", "alpha", "demo", "sandbox",
+    "preview", "stage", "prod", "production", "localhost", "local", "default",
+    "null", "undefined", "void", "claim", "claims", "page", "pages",
+    "got-a-page", "gotapage", "gota", "render", "renderer", "worker",
+    "wildcard", "apex", "naked", "redirect", "go", "link", "links",
+    "search", "explore", "gallery", "wall", "launch", "launches", "badge",
+    "badges", "stats", "metrics", "analytics", "newsletter", "subscribe"
+  ],
+  "brands": [
+    "google", "gmail", "youtube", "android", "chrome", "apple", "icloud",
+    "microsoft", "windows", "office", "azure", "xbox", "amazon", "aws",
+    "facebook", "instagram", "whatsapp", "meta", "twitter", "openai",
+    "chatgpt", "anthropic", "claude", "paypal", "stripe", "visa",
+    "mastercard", "amex", "coinbase", "binance", "netflix", "spotify",
+    "discord", "slack", "zoom", "dropbox", "adobe", "salesforce",
+    "cloudflare", "vercel", "netlify", "heroku", "digitalocean",
+    "linkedin", "tiktok", "snapchat", "pinterest", "reddit", "twitch",
+    "nokia", "samsung", "sony", "intel", "nvidia", "amd", "tesla",
+    "chase", "wellsfargo", "citibank", "hsbc", "barclays", "sbi", "hdfc",
+    "icici", "axis", "paytm", "phonepe", "gpay", "bhim", "upi"
+  ],
+  "blocked": [
+    "porn", "nsfw", "xxx", "sex", "adult", "casino", "gambling", "bet",
+    "bets", "betting", "lottery", "pharma", "pills", "drugs", "weed",
+    "crack", "hack", "hacks", "hacker", "cracked", "warez", "pirate",
+    "piracy", "torrent", "fake", "scam", "fraud", "phish", "phishing"
+  ]
+}

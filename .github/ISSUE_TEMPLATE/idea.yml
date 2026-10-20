@@ -1,0 +1,11 @@
+name: Idea or improvement
+description: Suggest something that makes got-a.page better
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: What should exist, and who does it help?
+    validations:
+      required: true

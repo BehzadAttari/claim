@@ -1,0 +1,8 @@
+{
+  "maxPagesPerAccount": 2,
+  "dnsRecordBudget": 190,
+  "supportedInstantTypes": ["person", "product"],
+  "features": {
+    "mxRecords": false
+  }
+}

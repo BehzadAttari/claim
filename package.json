@@ -1,0 +1,24 @@
+{
+  "name": "got-a-page-claim",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Claim your free name.got-a.page - validation, index build and DNS sync.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "tsx scripts/src/validate.ts",
+    "build-index": "tsx scripts/src/build-index.ts",
+    "dns-sync": "tsx scripts/src/dns-sync.ts",
+    "test": "tsx --test scripts/tests/*.test.ts"
+  },
+  "dependencies": {
+    "ajv": "8.20.0"
+  },
+  "devDependencies": {
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "@types/node": "22.20.5"
+  }
+}

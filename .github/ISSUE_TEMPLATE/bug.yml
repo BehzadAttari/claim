@@ -1,0 +1,17 @@
+name: Something is broken
+description: A page, the checker, or the site isn't working
+labels: [bug]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Where's the problem?
+      placeholder: e.g. dhanush.got-a.page, the claim checker on my PR
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
