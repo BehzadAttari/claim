@@ -7,12 +7,18 @@ live service. About 15 minutes, all free tiers.
 
 | Type | Name | Content | Proxy | Why |
 | --- | --- | --- | --- | --- |
-| A | `@` | `185.199.108.153` | DNS only | GitHub Pages (website) |
-| A | `@` | `185.199.109.153` | DNS only | GitHub Pages |
-| A | `@` | `185.199.110.153` | DNS only | GitHub Pages |
-| A | `@` | `185.199.111.153` | DNS only | GitHub Pages |
-| CNAME | `www` | `got-a-page.github.io` | DNS only | www redirect |
+| CNAME | `@` | `got-a-page.github.io` | DNS only (for now) | GitHub Pages (website). A CNAME at the apex works because Cloudflare flattens it at the root. |
+| CNAME | `www` | `got-a-page.github.io` | DNS only (for now) | www redirect |
 | AAAA | `*` | `100::` | **Proxied** | Wildcard - sends every unlisted subdomain to the Worker |
+
+Keep `@` and `www` on **DNS only** (grey cloud) until the website repo's
+**Settings - Pages** shows the DNS check green and the HTTPS certificate as
+issued - proxied records can stall GitHub's certificate check. Once
+**Enforce HTTPS** ticks on, you may switch both records to proxied (orange
+cloud); when you do, set the SSL/TLS mode to **Full (strict)**
+(**SSL/TLS - Overview**) so Cloudflare keeps validating GitHub's
+certificate. Never pick "Flexible" - that shows visitors HTTPS while
+fetching from GitHub over plain HTTP.
 
 That last record is the whole trick: **one** wildcard record serves every
 instant page, no matter how many people claim one. Point-mode pages each add
@@ -53,8 +59,9 @@ never runs.
 
 - `website` repo: **Settings - Pages** - source **Deploy from a branch** -
   `main` / root. Add custom domain `got-a.page` (the `CNAME` file in the repo
-  already matches), then tick **Enforce HTTPS** once the certificate issues
-  (a few minutes).
+  already matches). Wait for the DNS check to go green and the certificate
+  to issue (usually a few minutes; keep the DNS records unproxied until
+  then - see step 1), then tick **Enforce HTTPS**.
 - `claim` repo: the **Publish the page index** workflow manages Pages
   itself (source: GitHub Actions). Run it once from the Actions tab, then
   the index lives at `https://got-a-page.github.io/claim/index.json`.
