@@ -86,6 +86,15 @@ and [external DNS instructions](https://docs.netlify.com/manage/domains/configur
    a valid certificate. `.page` addresses require HTTPS, so an unfinished
    certificate can prevent the site from opening.
 
+**GitHub Pages:** saving the custom domain makes `yourname.github.io` redirect
+to your new address. During the certificate window, the old address shows the
+same browser error as the new one; both recover when the certificate is issued.
+
+**Site loads but looks unstyled?** Switching domains can break asset loading
+when CSS or JS URLs are hardcoded to the old address or use `http://`. Point
+them at the new domain (or use relative URLs) and check your static site
+generator's URL/base-path setting.
+
 If a host asks for an extra verification record, copy the exact record name,
 type and value into an issue for maintainers to review. Do not add it at the
 wrong name or combine a CNAME with TXT on the same hostname. The current claim
