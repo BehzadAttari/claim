@@ -46,6 +46,7 @@ const isMaintainer = maintainers.includes(author.toLowerCase());
 
 const reports: FileReport[] = [];
 const labels = new Set<string>();
+const modes = new Set<string>();
 
 for (const change of changes) {
   const name = change.path.split("/").pop()!.slice(0, -5);
@@ -86,6 +87,7 @@ for (const change of changes) {
 
   const claim = parsed as import("./lib/types.js").PageClaim;
   labels.add(claim.mode);
+  modes.add(claim.mode);
 
   const before = basePages.get(name);
   if (change.status === "added") {
@@ -146,11 +148,27 @@ const lines: string[] = [];
 if (ok) {
   lines.push("### Everything looks good", "");
   for (const r of reports) lines.push(`- ${r.summary}`);
-  lines.push(
-    "",
-    "A maintainer will take a final look and merge. Once it lands, your page goes live within a few minutes.",
-    "Welcome aboard."
-  );
+  lines.push("", "A maintainer will take a final look and merge.");
+  if (modes.has("instant")) {
+    lines.push(
+      "",
+      "**Instant pages go live within a few minutes of merge.** Until the index republishes, your address may " +
+        'still show the "unclaimed" page - that\'s normal, check back shortly.'
+    );
+  }
+  if (modes.has("point")) {
+    lines.push(
+      "",
+      "**Point mode pages go live in stages after merge:** first DNS sync, then your host verifies the domain " +
+        "and issues its HTTPS certificate. Until the certificate exists, browsers show a privacy error for your " +
+        "new address - and, on GitHub Pages, for your old `github.io` URL too, since it redirects to the custom " +
+        "domain. That window is normal and can last from minutes to hours; GitHub documents up to 24 hours " +
+        "before Enforce HTTPS becomes available. If the host setup is not finished yet, the " +
+        "[connect-host guide](https://github.com/got-a-page/claim/blob/main/docs/CONNECT-HOST.md#after-your-pr-merges) " +
+        "has the steps."
+    );
+  }
+  lines.push("", "Welcome aboard.");
 } else {
   lines.push("### A few things to fix", "");
   for (const r of reports) {
@@ -161,7 +179,7 @@ if (ok) {
   }
   lines.push(
     "Push another commit to this PR when it is fixed and I will check again.",
-    "Stuck? The [claim guide](https://got-a.page/docs/claim) walks through an example."
+    "Stuck? The [claim guide](https://got-a.page/docs) walks through an example."
   );
 }
 const warnList = reports.flatMap((r) => r.warnings.map((w) => `- ${w}`));
