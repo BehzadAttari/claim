@@ -1,6 +1,9 @@
 <!--
 Thanks for being here. Most PRs in this repo are page claims - delete the
-section that doesn't apply.
+section that doesn't apply. Claiming a page? Title your PR
+"Claim <name>.got-a.page" (for example "Claim owen.got-a.page") so claim
+PRs stay easy to scan. Enjoying got-a.page? A star on the repo makes our
+day - totally optional, always appreciated.
 -->
 
 ## Claiming or changing a page
