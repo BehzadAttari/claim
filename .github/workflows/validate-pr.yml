@@ -52,6 +52,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr comment "${{ github.event.pull_request.number }}" --body-file comment.md
+      - name: Share the review in the job summary
+        # Fork PR tokens are read-only, so bot comments are skipped - but the
+        # job summary is visible to everyone, including fork PRs.
+        if: always()
+        run: |
+          if [ -f comment.md ]; then cat comment.md >> "$GITHUB_STEP_SUMMARY"; fi
       - name: Fail the check when validation failed
         if: steps.check.outputs.exit != '0'
         run: exit 1
