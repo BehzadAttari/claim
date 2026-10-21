@@ -1,5 +1,5 @@
 name: Idea or improvement
-description: Suggest something that makes got-a.page better
+description: Suggest something that makes got-a.page better. For the title, write a short, specific summary - no prefix needed, the label is added for you.
 labels: [enhancement]
 body:
   - type: textarea
