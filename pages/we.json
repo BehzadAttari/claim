@@ -1,0 +1,18 @@
+{
+  "mode": "instant",
+  "owner": {
+    "github": "BehzadAttari"
+  },
+  "page": {
+    "type": "person",
+    "title": "Behzad",
+    "theme": "forest",
+    "tagline": "Nextjs/React Native Developer",
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/BehzadAttari"
+      }
+    ]
+  }
+}
