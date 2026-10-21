@@ -65,6 +65,9 @@ gives you a hostname or IP. `CNAME`, `A`, `AAAA` and `TXT` records supported.
 ## After your PR merges
 
 **Instant mode:** we host your page; no CNAME file or hosting setup is needed.
+Your page appears within a few minutes of merge. Until the index republishes
+and caches refresh, `yourname.got-a.page` may still show the "unclaimed"
+page - that's normal, check back shortly.
 
 **Point mode:** DNS alone is not enough. You must also add
 `yourname.got-a.page` to your own hosting account, ideally before merge.
@@ -77,6 +80,37 @@ See the [host setup guide](docs/CONNECT-HOST.md) for GitHub Pages, Vercel,
 Netlify and Cloudflare Pages. After merge, wait for DNS sync and your host's
 HTTPS certificate, then test `https://yourname.got-a.page`. Certificate
 issuance can take a while; GitHub says Enforce HTTPS can take up to 24 hours.
+
+### What to expect, step by step
+
+1. **Right after merge:** your claim file is in the repo. Automated runs
+   publish the index and sync DNS - you can watch them in the
+   [Actions tab](https://github.com/got-a-page/claim/actions).
+2. **Instant mode:** live within a few minutes, no further setup.
+3. **Point mode:** DNS publishes first, then your host verifies the domain
+   and issues its HTTPS certificate. Browsers show a privacy/certificate
+   error for your address until the certificate exists. That window is
+   expected - minutes to hours, occasionally longer.
+4. Once the certificate is issued, turn on **Enforce HTTPS** at your host
+   (GitHub Pages: Settings > Pages) and share your page.
+
+### "Is it broken?" - troubleshooting
+
+- **A browser certificate or privacy error right after merge (point mode):**
+  normal - the host's certificate is not ready yet. Wait, then enable
+  Enforce HTTPS when your host offers it.
+- **Your old `yourname.github.io` address shows the same error:** expected.
+  GitHub Pages redirects the old `github.io` address to your custom domain as
+  soon as you save it, so both addresses show the certificate error during
+  the waiting window, and both recover when the certificate is issued.
+- **Your address says "unclaimed" (instant mode):** the index has not
+  republished yet. Give it a few minutes after merge and hard-refresh.
+- **The page loads but looks unstyled:** your site is probably loading its
+  CSS or JS from the old address or over `http://`. Use relative asset URLs
+  or update your static site generator's URL/base-path setting for the new
+  domain.
+- **Still stuck after a day?** Open an issue with your page name and what
+  you see - real humans read them.
 
 ## A few kind rules
 
