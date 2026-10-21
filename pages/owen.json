@@ -1,0 +1,17 @@
+{
+  "mode": "instant",
+  "owner": {
+    "github": "Dev2023-Op"
+  },
+  "page": {
+    "type": "person",
+    "title": "Owen Ross",
+    "theme": "sunrise",
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/Dev2023-Op"
+      }
+    ]
+  }
+}
