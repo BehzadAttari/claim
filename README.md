@@ -1,3 +1,5 @@
+![got-a.page - Everyone's got a page](https://raw.githubusercontent.com/got-a-page/.github/main/profile/assets/banner.svg)
+
 # got-a.page
 
 **Everyone's got a page.** Claim yours - free, forever, no hosting required.
