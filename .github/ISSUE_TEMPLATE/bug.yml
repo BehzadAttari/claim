@@ -1,5 +1,5 @@
 name: Something is broken
-description: A page, the checker, or the site isn't working
+description: A page, the checker, or the site isn't working. For the title, write a short, specific summary - no [Bug] prefix needed, the label is added for you.
 labels: [bug]
 body:
   - type: input
